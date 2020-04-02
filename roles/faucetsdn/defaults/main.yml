@@ -1,0 +1,9 @@
+prerequisites_packages:
+- "gnupg"
+- "apt-transport-https" 
+- "dnsutils"
+- "curl"
+- "net-tools"
+
+faucet_packages:
+- "faucet-all-in-one"

@@ -1,0 +1,14 @@
+---
+# always try to use HTTPS. I'm not sure why the nginx folks don't provide it.
+- name: add faucetsdn apt-key
+  apt_key: 
+    url: https://packagecloud.io/faucetsdn/faucet/gpgkey
+    state: present 
+
+- name: add faucetsdn apt repository
+  apt_repository: 
+    repo: 'deb https://packagecloud.io/faucetsdn/faucet/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main'
+    state: present 
+    filename: faucetsdn 
+
+

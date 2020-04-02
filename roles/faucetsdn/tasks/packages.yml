@@ -1,0 +1,8 @@
+- name: installing faucet packages
+  apt:
+    name: "{{item}}"
+    state: "present"
+    #force_apt_get: true
+    update_cache: "yes"
+  with_items: "{{ faucet_packages }}"
+

@@ -1,0 +1,10 @@
+# installing prerequisites packages 
+- include: prerequisites.yml
+
+# configuring faucet repo
+- include: repo.yml
+
+# installing faucet packages
+- include: packages.yml
+
+
