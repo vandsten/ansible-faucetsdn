@@ -1,0 +1,21 @@
+- name: create multiple template files to create several networks
+  template: 
+    src: templates/template_multiple_networks.j2 
+    dest: "/tmp/{{ item.name }}.txt"
+  with_items: "{{ networks }}"
+
+#- name: create template file to create network
+#  template:
+#    src: templates/template_network.j2
+#    dest: /tmp/template_network.txt
+
+- name: create new template network 
+  command: "/usr/bin/onevnet create /tmp/{{ item.name }}.txt"
+  with_items: "{{ networks }}"
+
+#- name: download virtual router appliance
+#  command: "/usr/bin/onemarketapp export {{ vrouter_marketplace_name }} vrouter_alpine --datastore {{ vrouter_datastore }} --vmname {{ vrouter_name }}"
+#  run_once: true
+#  #remote_user: oneadmin
+
+

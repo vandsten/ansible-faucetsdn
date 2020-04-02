@@ -1,0 +1,25 @@
+# Network Template
+NAME    = "{{ network_name }}"
+DESCRIPTION = "{{ network_description }}"
+VN_MAD  = "{{ vn_mad }}"
+PHYDEV  = "{{ phydev }}"
+VLAN_ID = "{{ vlan_id }}"       # optional
+BRIDGE  = "{{ bridge }}"        # optional
+MTU     = "{{ mtu }}"
+
+
+# Context attributes
+NETWORK_ADDRESS = "{{ network_address }}"
+NETWORK_MASK    = "{{ network_mask }}"
+DNS             = "{{ network_dns }}"
+GATEWAY         = "{{ network_gateway }}"
+
+
+# Adress ranges
+##AR = [TYPE="{{ar_type}}", IP="{{ar_ip}}", SIZE="{{ar_size}}"]
+{% for netw in address_ranges %}
+AR = [ TYPE="{{netw.type}}", IP="{{netw.ip}}", SIZE="{{netw.size}}"]   
+{% endfor %}
+
+
+

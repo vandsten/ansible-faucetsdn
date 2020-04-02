@@ -1,0 +1,44 @@
+---
+networks:
+  - name: red077001
+    description: "Red\ 77001"
+    vn_mad: vxlan     # 802.1Q, ebtables, fw, ovswitch, vxlan, vcenter, dummy
+    phydev: ens3
+    bridge: br77001
+    vlan_id: 77001
+    automatic_vlan_id:
+    mtu: 1500
+    # context variables
+    address: "10.7.1.0"
+    mask: "255.255.255.0"
+    dns:  "10.7.1.1"
+    gateway: "10.7.1.1"
+    # adress ranges
+    ranges:
+     - type: "IP4"
+       ip: "10.7.1.2"
+       size: 10
+     - type: "IP4"
+       ip: "10.7.1.20"
+       size: 30
+  - name: red077002
+    description: "Red\ 77002"
+    vn_mad: vxlan     #  802.1Q, ebtables, fw, ovswitch, vxlan, vcenter, dummy
+    phydev: ens3
+    bridge: br77002
+    vlan_id: 77002
+    automatic_vlan_id:
+    mtu: 1500
+    # context variables
+    address: "10.7.2.0"
+    mask: "255.255.255.0"
+    dns:  "10.7.2.1"
+    gateway: "10.7.2.1"
+    # adress ranges
+    ranges:
+     - type: "IP4"
+       ip: "10.7.2.2"
+       size: 10
+     - type: "IP4"
+       ip: "10.7.2.20"
+       size: 30

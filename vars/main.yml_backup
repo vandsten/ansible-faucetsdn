@@ -1,0 +1,30 @@
+# Types of networks:  802.1Q, ebtables, fw, ovswitch, vxlan, vcenter, dummy
+network_name: red07
+network_description: "Red\ 7"
+vn_mad: vxlan
+phydev: ens3
+bridge: br100
+vlan_id: 100
+automatic_vlan_id:
+mtu: 1500
+
+# context variables
+network_address: "10.7.7.0"
+network_mask: "255.255.255.0"
+network_dns:  "10.7.7.1"
+network_gateway: "10.7.7.1"
+
+# adress ranges
+ar_type: IP4   # IP4, IP6
+ar_ip: "10.7.7.2"
+ar_size: 19
+
+
+
+address_ranges:
+ - type: "IP4"
+   ip: "10.7.7.2"
+   size: 10
+ - type: "IP4"
+   ip: "10.7.7.20"
+   size: 30
