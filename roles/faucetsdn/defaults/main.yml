@@ -7,3 +7,10 @@ prerequisites_packages:
 
 faucet_packages:
 - "faucet-all-in-one"
+
+
+# prometheus default vars
+scrapeinterval: 30s
+evaluationinterval: 15s
+
+

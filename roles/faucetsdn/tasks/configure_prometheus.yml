@@ -1,0 +1,7 @@
+---
+- name: configure prometheus
+  template:
+    src: templates/prometheus.j2
+    dest: "/etc/faucet/prometheus/prometheus.yml"
+  notify: restart-prometheus
+

@@ -1,0 +1,9 @@
+---
+- name: systemd daemon reload
+  command: /bin/systemctl daemon-reload
+
+- name: enable and start grafana-server service
+  systemd:
+   name: grafana-server
+   enabled: yes
+   state: started

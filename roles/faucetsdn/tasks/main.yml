@@ -7,4 +7,8 @@
 # installing faucet packages
 - include: packages.yml
 
+# configuring prometheus
+- include: configure_prometheus.yml
 
+# configuring grafana
+- include: configure_grafana.yml

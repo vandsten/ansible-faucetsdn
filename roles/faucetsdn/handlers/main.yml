@@ -1,0 +1,10 @@
+---
+
+# prometheus
+- name: restart-prometheus
+  action: service name=prometheus state=restarted
+
+# grafana
+- name: restart-grafana
+  action: service name=grafana state=restarted
+
