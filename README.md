@@ -16,11 +16,11 @@ Debian 10 buster
 Playbooks
 ---------
 We have following playbooks:
-* installation.yml
+* setup.yml
 
 
 How use it
 ----------
 
-> ansible-playbook -i inventory/localhost installation.yml -vvv
+> ansible-playbook -i inventory/localhost setup.yml -vvv
 
