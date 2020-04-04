@@ -1,7 +1,22 @@
 ---
-- name: configure prometheus
+- name: configure etc prometheus configuration file
   template:
     src: templates/prometheus.j2
     dest: "/etc/faucet/prometheus/prometheus.yml"
   notify: restart-prometheus
+
+- name: configure etc defaults configuration file
+  template:
+    src: templates/default_prometheus.j2
+    dest: "/etc/default/prometheus"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart-prometheus
+
+- name: enable and start prometheus service
+  systemd:
+   name: prometheus
+   enabled: yes
+   state: started
 
