@@ -7,10 +7,12 @@ FaucetSDN ansible role
 Requirements
 ------------
 
-Debian 9 stretch
-Debian 10 buster
+Operating system:
+* Debian 9 stretch
+* Debian 10 buster
 
-
+Ansible:
+* > 2.2
 
 
 Playbooks
