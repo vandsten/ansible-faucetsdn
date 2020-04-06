@@ -26,3 +26,10 @@ How use it
 
 > ansible-playbook -i inventory/localhost setup.yml -vvv
 
+without applying changes
+
+> ansible-playbook -i inventory/localhost setup.yml -vvv --check 
+
+and showing the differences
+
+> ansible-playbook -i inventory/localhost setup.yml -vvv --check --diff

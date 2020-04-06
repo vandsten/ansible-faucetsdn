@@ -10,28 +10,6 @@
    enabled: yes
    state: started
 
-#- name: checking plugins installed
-#  find:
-#    file_type: directory
-#    recurse: false
-#    paths: "{{ grafana_datadir }}/plugins"
-#  register: plugins_installed
-
-#- name: installing prometheus plugin
-#  become: true
-#  command: "grafana-cli --pluginsDir {{ grafana_datadir }}/plugins plugins install {{ item }}"
-#  args:
-#    creates: "{{ grafana_datadir }}/plugins/{{ item }}"
-#  with_items: 
-#    - "{{grafana_plugins}}
-#  register: _plugin_install
-#  until: _plugin_install is succeeded
-#  retries: 5
-#  delay: 2
-#  when: prometheus not in plugins_installed
-#  notify:
-#    - restart-grafana
-
 # getting datasources configured
 - name: get datasources
   uri:
@@ -62,3 +40,23 @@
   register: result
   changed_when: result.status == 200
   when: grafana_datasource is defined and grafana_datasource.name not in grafana_list_datasources
+
+
+# importing instrumentation, inventory and post statistics dashboards json files to grafana
+- name: importing grafana dashboards through API
+  uri:
+    url: "http://localhost:{{ grafana_port }}/api/dashboards/db"
+    method: POST
+    user: "{{ grafana_user }}"
+    password: "{{ grafana_password }}"
+    force_basic_auth: yes
+    body_format: json
+    body: >
+      {
+        "dashboard": {{ lookup("file", item) }},
+        "overwrite": true,
+        "message": "Updated by ansible"
+      }
+  no_log: false
+  with_fileglob:
+    - "files/*.json"
