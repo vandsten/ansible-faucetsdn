@@ -29,3 +29,75 @@ scrapeinterval: 30s
 evaluationinterval: 15s
 
 
+# faucet file configuration
+# vlans
+
+vlans:
+  mgmt:
+    - vid: 100
+      description: mgmt network
+      acls_in: [mgmt-vlan-protect]
+  storage:
+    - vid: 200
+      decription: storage network
+      acls_in: [storage-vlan-protect]
+
+# datapaths
+dps:
+  - sw1:
+    dp_id: 0x1
+    hardware: "switch 1"
+    interfaces: 
+      - id_interface: 1
+        description: "host 1"
+        native_vlan: mgmt
+        acls_in: [access-port-protect]
+      - id_interface: 2
+        description: "storage 1"
+        native_vlan: storage
+        acls_in: [access-port-protect]
+      - id_interface: 3
+        description: "trunk with sw2"
+        tagged_vlans: [mgmt,storage]
+  - sw2:
+    dp_id: 0x2
+    hardware: "switch 2"
+    interfaces: 
+      - id_interface: 1 
+        description: "host 2"
+        native_vlan: mgmt
+        acls_in: [access-port-protect]
+      - id_interface: 2 
+        description: "storage 2"
+        native_vlan: storage
+        acls_in: [access-port-protect]
+      - id_interface: 3
+        description: "trunk with sw2"
+        tagged_vlans: [mgmt,storage]
+
+
+  
+#  - name: red077001
+#    description: "Red\ 77001"
+#    vn_mad: vxlan     # 802.1Q, ebtables, fw, ovswitch, vxlan, vcenter, dummy
+#    phydev: ens3
+#    bridge: br77001
+#    vlan_id: 77001
+#    automatic_vlan_id:
+#    mtu: 1500
+#    # context variables
+#    address: "10.7.1.0"
+#    mask: "255.255.255.0"
+#    dns:  "10.7.1.1"
+#    gateway: "10.7.1.1"
+#    # adress ranges
+#    ranges:
+#     - type: "IP4"
+#       ip: "10.7.1.2"
+#       size: 10
+#     - type: "IP4"
+#       ip: "10.7.1.20"
+#       size: 30
+
+
+
