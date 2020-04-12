@@ -1,0 +1,34 @@
+---
+- name: copying etc faucet configuration file temporaly to tmp directory to check it
+  copy:
+    src: files/faucet.yaml
+    dest: "/tmp/faucet.yaml"
+
+- name: copying etc acl configuration file temporarly to tmp directory to check it 
+  copy:
+    src: files/acls.yaml
+    dest: "/tmp/acls.yaml"
+
+- name: ckecking faucet configuration file
+  shell: "check_faucet_config /tmp/faucet.yaml"
+  register: faucet_config_output
+
+- debug:
+    var: faucet_config_output
+
+- name: copying etc faucet configuration file to the definitive destination to change the configuration
+  copy: 
+    src: files/faucet.yaml
+    dest: "/etc/faucet/faucet.yaml"
+  when: faucet_config_output != "Error"
+
+- name: copying etc acls configuration file to the definitive destination to change the configuration
+  copy: 
+    src: files/acls.yaml
+    dest: "/etc/faucet/acls.yaml"
+  when: faucet_config_output != "Error"
+
+- name: reloading faucet daemon if config checking is ok.
+  command: "/usr/bin/pkill -HUP -f faucet.faucet" 
+  when: faucet_config_output != "Error"
+

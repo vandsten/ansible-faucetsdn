@@ -12,3 +12,6 @@
 
 # configuring grafana
 - include: configure_grafana.yml
+
+# configuring faucet 
+- include: configure_faucet.yml
